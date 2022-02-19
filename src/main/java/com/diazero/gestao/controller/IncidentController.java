@@ -58,12 +58,12 @@ public class IncidentController {
 	}
 
 	/**
-	 * Save client 
+	 * Save incident 
 	 * 
 	 * @param incident
 	 * @return
 	 */
-	@ApiOperation("Save client")
+	@ApiOperation("Save incident")
 	@PostMapping
 	public ResponseEntity<?> save(@RequestBody Incident incident) {
 
