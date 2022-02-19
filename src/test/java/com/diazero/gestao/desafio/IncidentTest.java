@@ -1,9 +1,7 @@
 package com.diazero.gestao.desafio;
 
 import static org.junit.Assert.assertNotNull;
-
 import javax.annotation.Resource;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -14,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.diazero.gestao.entity.Incident;
 import com.diazero.gestao.service.IncidentService;
 
