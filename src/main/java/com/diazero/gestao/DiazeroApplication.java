@@ -8,10 +8,10 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication(scanBasePackages = { "com.venturus.*" })
 @ComponentScan(basePackages = "com.venturus.desafio.servico")
 @EntityScan(basePackages = "com.venturus.desafio.entity")
-public class DesafioApplication {
+public class DiazeroApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DesafioApplication.class, args);
+		SpringApplication.run(DiazeroApplication.class, args);
 	}
 
 }

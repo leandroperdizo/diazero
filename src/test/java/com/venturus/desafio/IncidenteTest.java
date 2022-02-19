@@ -1,8 +1,8 @@
 package com.venturus.desafio;
 
 import com.diazero.gestao.config.VenturusConfig;
-import com.diazero.gestao.entity.Incidente;
-import com.diazero.gestao.service.IncidenteService;
+import com.diazero.gestao.entity.Incident;
+import com.diazero.gestao.service.IncidentService;
 
 import javax.annotation.Resource;
 import org.junit.jupiter.api.AfterAll;
@@ -28,26 +28,26 @@ import static org.junit.Assert.assertNotNull;
 class IncidenteTest {
 
 	@Resource
-	IncidenteService incidenteService;
+	IncidentService incidenteService;
 
-	static Incidente cliente = null;
+	static Incident cliente = null;
 
-	static Incidente clienteAlt = null;
+	static Incident clienteAlt = null;
 
-	static Incidente clienteDelet = null;
+	static Incident clienteDelet = null;
 
 	@BeforeAll
 	static void setup() {
 
-		cliente = new Incidente();
+		cliente = new Incident();
 		cliente.setName("clientenovo");
 		cliente.setDescription("7687678670");
 
-		clienteAlt = new Incidente();
+		clienteAlt = new Incident();
 		clienteAlt.setName("clientenovoalt");
 		clienteAlt.setDescription("7687678678");
 
-		clienteDelet = new Incidente();
+		clienteDelet = new Incident();
 		clienteDelet.setName("clientenovodelet");
 		clienteDelet.setDescription("7687678677");
 	}
@@ -71,7 +71,7 @@ class IncidenteTest {
 	@DisplayName("Atualizar cliente com sucesso")
 	@Test
 	void testAtualizarCliente() {
-		Incidente cli = incidenteService.save(clienteAlt);
+		Incident cli = incidenteService.save(clienteAlt);
 		cli.setName("clienteNome");
 		assertNotNull(incidenteService.update(cli));
 		incidenteService.delete(clienteAlt);
@@ -87,7 +87,7 @@ class IncidenteTest {
 	@DisplayName("Deletar cliente")
 	@Test
 	void testDeletarCliente() {
-		Incidente cli = incidenteService.save(clienteDelet);
+		Incident cli = incidenteService.save(clienteDelet);
 		incidenteService.delete(cli);
 	}
 }

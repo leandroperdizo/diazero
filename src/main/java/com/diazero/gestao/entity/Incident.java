@@ -3,12 +3,14 @@ package com.diazero.gestao.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +19,8 @@ import lombok.Setter;
 @Table(name = "incidente")
 @Getter
 @Setter
-public class Incidente implements Serializable {
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+public class Incident implements Serializable {
 
 	/**
 	 * Serial Version ID
@@ -25,41 +28,35 @@ public class Incidente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Id
+	 * IdIncident
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "idIncident")
 	private Integer idIncident;
 
 	/**
-	 * Nome
+	 * Name
 	 */
-	@Column(name = "name")
 	private String name;
 
 	/**
-	 * CNPJ
+	 * Description
 	 */
-	@Column(name = "description")
 	private String description;
 	
 	/**
-	 * CNPJ
+	 * CreatedAt
 	 */
-	@Column(name = "createdAt")
 	private Date createdAt;
 	
 	/**
-	 * CNPJ
+	 * UpdatedAt
 	 */
-	@Column(name = "updatedAt")
 	private Date updatedAt;
 	
 	/**
-	 * CNPJ
+	 * ClosedAt
 	 */
-	@Column(name = "closedAt")
 	private Date closedAt;
 
 	

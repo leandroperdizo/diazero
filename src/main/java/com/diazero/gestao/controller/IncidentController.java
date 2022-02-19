@@ -1,7 +1,7 @@
 package com.diazero.gestao.controller;
 
-import com.diazero.gestao.entity.Incidente;
-import com.diazero.gestao.service.IncidenteService;
+import com.diazero.gestao.entity.Incident;
+import com.diazero.gestao.service.IncidentService;
 
 import io.swagger.annotations.ApiOperation;
 import java.util.Optional;
@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/cliente")
-public class IncidenteController {
+public class IncidentController {
 
 	@Autowired
-	IncidenteService clienteService;
+	IncidentService clienteService;
 
 	/**
 	 * Buscar clientes 
@@ -35,13 +35,32 @@ public class IncidenteController {
 	 * @param size
 	 * @return
 	 */
-	@ApiOperation("Buscar clientes")
+	@ApiOperation("Find incidents")
 	@GetMapping
 	public ResponseEntity<?> findAll(@RequestParam(value = "nome", required = true) String nome,
 			@RequestParam(value = "page", required = true) Integer page,
 			@RequestParam(value = "size", required = true) Integer size) {
 
-		return new ResponseEntity<Page<Incidente>>(clienteService.findAll(nome, page, size), HttpStatus.OK);
+		return new ResponseEntity<Page<Incident>>(clienteService.findAll(page, size), HttpStatus.OK);
+	}
+	
+	/**
+	 * Buscar clientes 
+	 * 
+	 * @param id
+	 * @param nome
+	 * @param cpf
+	 * @param page
+	 * @param size
+	 * @return
+	 */
+	@ApiOperation("Find incidents")
+	@GetMapping
+	public ResponseEntity<?> findByIdIncident(@RequestParam(value = "idIncident", required = true) Integer idIncident,
+			@RequestParam(value = "page", required = true) Integer page,
+			@RequestParam(value = "size", required = true) Integer size) {
+
+		return new ResponseEntity<Page<Incident>>(clienteService.findByIdIncident(idIncident, page, size), HttpStatus.OK);
 	}
 
 	/**
@@ -52,7 +71,7 @@ public class IncidenteController {
 	 */
 	@ApiOperation("Salvar cliente")
 	@PostMapping
-	public ResponseEntity<?> save(@RequestBody Incidente cliente) {
+	public ResponseEntity<?> save(@RequestBody Incident cliente) {
 
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(Optional.of(cliente).map(clienteService::save).orElseThrow());
@@ -66,9 +85,9 @@ public class IncidenteController {
 	 */
 	@ApiOperation("Atualizar cliente")
 	@PutMapping
-	public ResponseEntity<Optional<Incidente>> update(@RequestBody Incidente cliente) {
+	public ResponseEntity<Optional<Incident>> update(@RequestBody Incident cliente) {
 
-		return new ResponseEntity<Optional<Incidente>>(Optional.of(cliente).map(clienteService::update).orElseThrow(),
+		return new ResponseEntity<Optional<Incident>>(Optional.of(cliente).map(clienteService::update).orElseThrow(),
 				HttpStatus.OK);
 	}
 
@@ -79,7 +98,7 @@ public class IncidenteController {
 	 */
 	@ApiOperation("Deletar cliente")
 	@DeleteMapping
-	public void delete(@RequestBody Incidente cliente) {
+	public void delete(@RequestBody Incident cliente) {
 
 		clienteService.delete(cliente);
 	}
