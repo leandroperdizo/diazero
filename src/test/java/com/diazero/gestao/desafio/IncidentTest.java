@@ -66,9 +66,9 @@ class IncidentTest {
 	@DisplayName("Update incident successfully")
 	@Test
 	void testUpdateIncident() {
-		Incident cli = incidenteService.save(incidentAlt);
-		cli.setName("incidentName");
-		assertNotNull(incidenteService.update(cli));
+		Incident inc = incidenteService.save(incidentAlt);
+		inc.setName("incidentName");
+		assertNotNull(incidenteService.update(inc));
 		incidenteService.delete(incidentAlt.getIdIncident());
 	}
 
@@ -82,7 +82,7 @@ class IncidentTest {
 	@DisplayName("Delete incident")
 	@Test
 	void testDeleteIncident() {
-		Incident cli = incidenteService.save(incidentDelet);
-		incidenteService.delete(cli.getIdIncident());
+		Incident inc = incidenteService.save(incidentDelet);
+		incidenteService.delete(inc.getIdIncident());
 	}
 }
