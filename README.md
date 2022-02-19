@@ -11,10 +11,25 @@ This README would normally document whatever steps are necessary to get your app
 ### How do I get set up? ###
 
 * Summary of set up
+
+Start application and test on Postman collection 
+
 * Configuration
+
+-
+
 * Dependencies
+
+-
+
 * Database configuration
+
+-
+
 * How to run tests
+
+IncidentTest class. 
+
 * Deployment instructions
 
 ### Contribution guidelines ###

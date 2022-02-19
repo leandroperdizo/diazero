@@ -38,7 +38,7 @@ public class IncidentServiceImpl implements IncidentService {
 	}
 
 	/**
-	 * Salvar incident 
+	 * Save incident 
 	 */
 	@Override
 	public Incident save(Incident incident) {
@@ -48,7 +48,7 @@ public class IncidentServiceImpl implements IncidentService {
 	}
 
 	/**
-	 * Atualizar incident 
+	 * Update incident 
 	 */
 	@Override
 	public Optional<Incident> update(Incident incident) {
@@ -63,7 +63,7 @@ public class IncidentServiceImpl implements IncidentService {
 	}
 
 	/**
-	 * Deletar incident 
+	 * Delete incident 
 	 */
 	@Override
 	public void delete(Integer idIncident) {
