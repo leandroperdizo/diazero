@@ -1,9 +1,5 @@
 package com.diazero.gestao.controller;
 
-import com.diazero.gestao.entity.Incident;
-import com.diazero.gestao.service.IncidentService;
-
-import io.swagger.annotations.ApiOperation;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,96 +7,94 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.diazero.gestao.entity.Incident;
+import com.diazero.gestao.service.IncidentService;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/cliente")
+@RequestMapping("/incident")
 public class IncidentController {
 
 	@Autowired
-	IncidentService clienteService;
+	IncidentService incidentService;
 
 	/**
-	 * Buscar clientes 
+	 * Find all incidents  
 	 * 
-	 * @param id
-	 * @param nome
-	 * @param cpf
 	 * @param page
 	 * @param size
 	 * @return
 	 */
-	@ApiOperation("Find incidents")
+	@ApiOperation("Find all incidents")
 	@GetMapping
-	public ResponseEntity<?> findAll(@RequestParam(value = "nome", required = true) String nome,
-			@RequestParam(value = "page", required = true) Integer page,
+	public ResponseEntity<?> findAll(@RequestParam(value = "page", required = true) Integer page,
 			@RequestParam(value = "size", required = true) Integer size) {
 
-		return new ResponseEntity<Page<Incident>>(clienteService.findAll(page, size), HttpStatus.OK);
+		return new ResponseEntity<Page<Incident>>(incidentService.findAll(page, size), HttpStatus.OK);
 	}
 	
 	/**
-	 * Buscar clientes 
+	 * Find incident by id  
 	 * 
 	 * @param id
-	 * @param nome
-	 * @param cpf
 	 * @param page
 	 * @param size
 	 * @return
 	 */
-	@ApiOperation("Find incidents")
-	@GetMapping
+	@ApiOperation("Find incident by id")
+	@GetMapping("/findByIdIncident")
 	public ResponseEntity<?> findByIdIncident(@RequestParam(value = "idIncident", required = true) Integer idIncident,
 			@RequestParam(value = "page", required = true) Integer page,
 			@RequestParam(value = "size", required = true) Integer size) {
 
-		return new ResponseEntity<Page<Incident>>(clienteService.findByIdIncident(idIncident, page, size), HttpStatus.OK);
+		return new ResponseEntity<Page<Incident>>(incidentService.findByIdIncident(idIncident, page, size), HttpStatus.OK);
 	}
 
 	/**
-	 * Salvar cliente 
+	 * Save client 
 	 * 
-	 * @param cliente
+	 * @param incident
 	 * @return
 	 */
-	@ApiOperation("Salvar cliente")
+	@ApiOperation("Save client")
 	@PostMapping
-	public ResponseEntity<?> save(@RequestBody Incident cliente) {
+	public ResponseEntity<?> save(@RequestBody Incident incident) {
 
 		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(Optional.of(cliente).map(clienteService::save).orElseThrow());
+				.body(Optional.of(incident).map(incidentService::save).orElseThrow());
 	}
 
 	/**
-	 * Atualizar cliente 
+	 * Update incident 
 	 * 
-	 * @param cliente
+	 * @param incident
 	 * @return
 	 */
-	@ApiOperation("Atualizar cliente")
+	@ApiOperation("Update incident")
 	@PutMapping
-	public ResponseEntity<Optional<Incident>> update(@RequestBody Incident cliente) {
+	public ResponseEntity<Optional<Incident>> update(@RequestBody Incident incident) {
 
-		return new ResponseEntity<Optional<Incident>>(Optional.of(cliente).map(clienteService::update).orElseThrow(),
+		return new ResponseEntity<Optional<Incident>>(Optional.of(incident).map(incidentService::update).orElseThrow(),
 				HttpStatus.OK);
 	}
 
 	/**
-	 * Deletar cliente 
+	 * Delete incident 
 	 * 
-	 * @param cliente
+	 @param incident
 	 */
-	@ApiOperation("Deletar cliente")
-	@DeleteMapping
-	public void delete(@RequestBody Incident cliente) {
+	@ApiOperation("Delete incident")
+	@DeleteMapping("/{idIncident}")
+	public void delete(@PathVariable Integer idIncident) {
 
-		clienteService.delete(cliente);
+		incidentService.delete(idIncident);
 	}
 
 }

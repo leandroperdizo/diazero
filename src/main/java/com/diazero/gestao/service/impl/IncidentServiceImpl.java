@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class IncidentServiceImpl implements IncidentService {
 
 	@Autowired
-	private IncidentRepository clienteRepository;
+	private IncidentRepository incidentRepository;
 
 	/**
 	 * Find all incidents 
@@ -23,8 +23,8 @@ public class IncidentServiceImpl implements IncidentService {
 	@Override
 	public Page<Incident> findAll(Integer page, Integer size) {
 
-		PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "nome");
-		return clienteRepository.findAll(pageRequest);
+		PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "name");
+		return incidentRepository.findAll(pageRequest);
 	}
 	
 	/**
@@ -33,40 +33,41 @@ public class IncidentServiceImpl implements IncidentService {
 	@Override
 	public Page<Incident> findByIdIncident(Integer idIncident, Integer page, Integer size) {
 
-		PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "nome");
-		return clienteRepository.findByIdIncident(idIncident, pageRequest);
+		PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "name");
+		return incidentRepository.findByIdIncident(idIncident, pageRequest);
 	}
 
 	/**
-	 * Salvar cliente 
+	 * Salvar incident 
 	 */
 	@Override
-	public Incident save(Incident cliente) {
+	public Incident save(Incident incident) {
 
-		return Optional.ofNullable(cliente)
-				.map(param -> clienteRepository.save(cliente)).orElseGet(() -> new Incident());
+		return Optional.ofNullable(incident)
+				.map(param -> incidentRepository.save(incident)).orElseGet(() -> new Incident());
 	}
 
 	/**
-	 * Atualizar cliente 
+	 * Atualizar incident 
 	 */
 	@Override
-	public Optional<Incident> update(Incident cliente) {
+	public Optional<Incident> update(Incident incident) {
 
-		return clienteRepository
-				.findById(cliente.getIdIncident())
+		return incidentRepository
+				.findById(incident.getIdIncident())
 				.map(param -> {			
-					param.setName(cliente.getName() == null ? param.getName() : cliente.getName());
-			return clienteRepository.save(param);
+					param.setName(incident.getName() == null ? param.getName() : incident.getName());
+					param.setDescription(incident.getDescription() == null ? param.getDescription() : incident.getDescription());
+			return incidentRepository.save(param);
 		});
 	}
 
 	/**
-	 * Deletar cliente 
+	 * Deletar incident 
 	 */
 	@Override
-	public void delete(Incident cliente) {
+	public void delete(Integer idIncident) {
 
-		clienteRepository.delete(cliente);
+		incidentRepository.deleteById(idIncident);
 	}
 }

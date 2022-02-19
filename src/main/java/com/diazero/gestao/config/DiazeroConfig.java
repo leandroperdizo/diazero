@@ -12,11 +12,11 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.venturus.desafio.repository")
+@EnableJpaRepositories(basePackages = "com.diazero.gestao.repository")
 @EnableAutoConfiguration
-@PropertySource("application-h2.properties")
+@PropertySource("application.properties")
 @EnableTransactionManagement
-public class VenturusConfig {
+public class DiazeroConfig {
 
 	@Autowired
 	private Environment env;

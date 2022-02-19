@@ -13,10 +13,10 @@ public interface IncidentService {
 	
 	public Page<Incident> findByIdIncident(Integer idIncident, Integer page, Integer size);
 
-	public Incident save(Incident cliente);
+	public Incident save(Incident incident);
 
-	public Optional<Incident> update(Incident cliente);
+	public Optional<Incident> update(Incident incident);
 
-	public void delete(Incident cliente);
+	public void delete(Integer idIncident);
 
 }

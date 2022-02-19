@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
@@ -16,7 +19,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "incidente")
+@Table(name = "incident")
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
@@ -47,16 +50,19 @@ public class Incident implements Serializable {
 	/**
 	 * CreatedAt
 	 */
+	@CreationTimestamp
 	private Date createdAt;
 	
 	/**
 	 * UpdatedAt
 	 */
+	@UpdateTimestamp
 	private Date updatedAt;
 	
 	/**
 	 * ClosedAt
 	 */
+	@UpdateTimestamp
 	private Date closedAt;
 
 	
