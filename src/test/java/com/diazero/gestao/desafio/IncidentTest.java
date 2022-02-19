@@ -1,10 +1,9 @@
 package com.diazero.gestao.desafio;
 
-import com.diazero.gestao.config.DiazeroConfig;
-import com.diazero.gestao.entity.Incident;
-import com.diazero.gestao.service.IncidentService;
+import static org.junit.Assert.assertNotNull;
 
 import javax.annotation.Resource;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -13,17 +12,16 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.transaction.annotation.Transactional;
-import static org.junit.Assert.assertNotNull;
+
+import com.diazero.gestao.entity.Incident;
+import com.diazero.gestao.service.IncidentService;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @ComponentScan(basePackages = "com.diazero.*")
 @EntityScan(basePackages = "com.diazero.gestao.entity")
-@ContextConfiguration(classes = { DiazeroConfig.class }, loader = AnnotationConfigContextLoader.class)
 @Transactional
 class IncidentTest {
 
